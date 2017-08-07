@@ -2,6 +2,7 @@ var pgp = require('pg-promise')()
 var connectionString = 'postgres://localhost:5432/grocery_store'
 var db = pgp(connectionString)
 
+
 function productList(section) {
   return db.any('SELECT name AS "Product Name", section AS "Section" FROM grocery_items WHERE section = $1', section)
 }
@@ -27,4 +28,10 @@ function realShoppers(){
   HAVING COUNT(orders.shopper_id) > 0
   ORDER BY COUNT(orders.id) ASC
   `)
+}
+
+module.exports = {
+  productList,
+  shopperOrders,
+  realShoppers
 }
