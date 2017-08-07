@@ -6,6 +6,7 @@ var port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
 app.get('/api/days/:day', function(request, response, next){
   var daysOfWeek = {
     monday: 1,
@@ -27,6 +28,24 @@ app.get('/api/days/:day', function(request, response, next){
     response.status(200)
     response.send(String(daysOfWeek[day]))
   }
+})
+
+app.post('/api/array/concat', function(request, response, next){
+  response.set('Content-Type', 'application/json')
+  var bodyObj = request.body
+  var arrays = []
+  for(item in bodyObj){
+    try {
+      arrays.push(JSON.parse(bodyObj[item]))
+    } catch(error) {
+        if(error instanceof SyntaxError) {
+          response.status(400)
+          return response.json({"error": "Input data should be of type Array."})
+        }
+      }
+  }
+  var result = [].concat.apply([], arrays)
+  response.json({"result": result})
 })
 
 
