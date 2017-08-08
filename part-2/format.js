@@ -1,5 +1,3 @@
-
-
 function formatProductList(result){
   console.log(`|------------------+------------------+`)
   console.log(`|   Product Name   |      Section     |`)
