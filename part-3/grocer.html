@@ -11,7 +11,7 @@
       <h1>Grocer</h1>
       <button type="button" id="cart-button">
         Cart
-        &nbsp;<span id="cart-item-count">(3)</span>
+        &nbsp;<span id="cart-item-count">(0)</span>
       </button>
     </header>
 
@@ -72,6 +72,16 @@
             <button type="button" class="add-item-btn">Add to cart</button>
           </li>
         </ul>
+      </div>
+      <div class="cartModal">
+        <div class="cartModalContent">
+          <span class="close">&times;</span>
+          <h2>Cart</h2>
+          <div class="shoppingList">
+          </div>
+          <div class="cartTotal"><strong>Total $<span class="total"></span></strong></div>
+          <button type="button" class="clearButton">Clear</button>
+        </div>
       </div>
     </div>
     <script src="grocer.js"></script>
