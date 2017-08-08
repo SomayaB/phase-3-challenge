@@ -7,11 +7,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var closeModalBtn = document.querySelector('.close-modal')
   var shoppingList = document.querySelector('.shopping-list')
   var cartTotalNumber = document.querySelector('.cart-total-number')
+  var clearBtn = document.querySelector('.clear-button')
+
+  var itemsInCart = []
+  var cartCount
+  var cartTotal = 0.00
+
 
   ;(function addToCart(){
-      var itemsInCart = []
-      var cartCount = 0
-      var cartTotal = 0.00
       addItemButtons.forEach(function(button){
         button.addEventListener('click', function(){
           var itemName = button.parentNode.querySelector('.item-name').textContent
@@ -26,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           //seperate this out? updateCartTotal()
           var priceWithoutDollarSign = Number(itemPrice.replace(/[^0-9\.]+/g,""))
           cartTotal += priceWithoutDollarSign
-          var total = Math.round(cartTotal * 100) / 100
-          cartTotalNumber.textContent = total
+          var roundedTotal = Math.round(cartTotal * 100) / 100
+          cartTotalNumber.textContent = roundedTotal
         })
       })
   })()
@@ -45,7 +48,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
   })()
 
-
+  ;(function clearCart(){
+    clearBtn.addEventListener('click', function(){
+      cartCount = 0
+      cartTotal = 0.00
+      itemsInCart = []
+      cartCountDisplay.textContent = `(${cartCount})`
+      cartTotalNumber.textContent = cartTotal
+      shoppingList.parentNode.removeChild(shoppingList)
+    })
+  })()
 
 
 })
