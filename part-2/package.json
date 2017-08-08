@@ -1,0 +1,19 @@
+{
+  "name": "part-2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "database.js",
+  "scripts": {
+    "test": "node_modules/.bin/mocha database_test.js"
+  },
+  "keywords": [],
+  "author": "Somaya Bounouar",
+  "license": "MIT",
+  "dependencies": {
+    "pg-promise": "^6.3.7"
+  },
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0"
+  }
+}

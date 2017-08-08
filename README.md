@@ -21,8 +21,7 @@ Each requirement has a point value. A fully complete requirement gets full point
 
 - [ ] __10:__ Solution is in a public repository called `phase-3-challenge`.
 - [ ] __10:__ Solution repository has 3 folders: `part-1`, `part-2`, and `part-3`.
-- [ ] __10:__ Solution repository inclu
-a `.gitignore` ignoring files that don't shouldn't be committed (e.g. `node_modules/`, `*.log` files).
+- [ ] __10:__ Solution repository includes a `.gitignore` ignoring files that don't shouldn't be committed (e.g. `node_modules/`, `*.log` files).
 - [ ] __10:__ Parts 1 and 2 have their own `package.json` specifying dependencies.
 - [ ] __20:__ Git history shows frequent commits.
 
@@ -96,10 +95,10 @@ Write a command line script called `store` that retrieves information from the d
 
 The `store` command should support the following sub commands:
 
-| command        | description                                              | example usage                            |
-|----------------|----------------------------------------------------------|------------------------------------------|
-| product-list   | lists all products which belong to the given section     | ./store product-list `<product-section>` |
-| shopper-orders | lists the orders for a given shopper                     | ./store shopper-orders `<shopper-id>`    |
+| command        | description                                               | example usage                            |
+|----------------|-----------------------------------------------------------|------------------------------------------|
+| product-list   | lists all products which belong to the given section      | ./store product-list `<product-section>` |
+| shopper-orders | lists the orders for a given shopper                      | ./store shopper-orders `<shopper-id>`    |
 | real-shoppers  | lists the names of all shoppers who have at least 1 order | ./store real-shoppers                    |
 
 ### Example Usage
@@ -146,27 +145,27 @@ $ ./store real-shoppers
 ```
 
 ### Requirements
-- [ ] __10:__ All files are stored under the `part-2/` folder
-- [ ] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
-- [ ] __10:__ SQL script to insert [grocery seed data][grocery-data] and load from CSV is created in a file `load-data.sql`
-- [ ] __10:__ SQL statements to insert data into the `orders` and `shoppers` table is added to the file `load-data.sql`. (Add at least 5 rows in each table)
-- [ ] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
-- [ ] __10:__ Tests can be run with the command `$ npm test`
+- [x] __10:__ All files are stored under the `part-2/` folder
+- [x] __10:__ Database schema (all `CREATE TABLE` statements) is defined in a file `schema.sql`
+- [x] __10:__ SQL script to insert [grocery seed data][grocery-data] and load from CSV is created in a file `load-data.sql`
+- [x] __10:__ SQL statements to insert data into the `orders` and `shoppers` table is added to the file `load-data.sql`. (Add at least 5 rows in each table)
+- [x] __10:__ All database query functions are written in a file `database.js`, and tests for queries are written in a file `database_test.js`
+- [x] __10:__ Tests can be run with the command `$ npm test`
 
 User Stories: Ensure that your schema design can satisfy the following scenarios
-- [ ] __10__: As a shopper I can fetch all my orders
-- [ ] __10__: As a shopper I can have multiple items in an order. (Assume the quantity of each item is always 1)
+- [x] __10__: As a shopper I can fetch all my orders
+- [x] __10__: As a shopper I can have multiple items in an order. (Assume the quantity of each item is always 1)
 
 Command line interface requirements
-- [ ] __10__: Create a command line Node script called `store.js`
-- [ ] __20__: Command `product-list` has been implemented
-- [ ] __40__: Command `shopper-orders` has been implemented
-- [ ] __30__: Command `real-shoppers` has been implemented
+- [x] __10__: Create a command line Node script called `store.js`
+- [x] __20__: Command `product-list` has been implemented
+- [x] __40__: Command `shopper-orders` has been implemented
+- [x] __30__: Command `real-shoppers` has been implemented
 
 Write tests with [Mocha](https://mochajs.org/) + [Chai](http://chaijs.com/) in `database_test.js` that assert:
-- [ ] __20__: The database function for the command `product-list` is tested
-- [ ] __20__: The database function for the command `shopper-orders` is tested
-- [ ] __20__: The database function for the command `real-shoppers` is tested
+- [x] __20__: The database function for the command `product-list` is tested
+- [x] __20__: The database function for the command `shopper-orders` is tested
+- [x] __20__: The database function for the command `real-shoppers` is tested
 
 ## Part 3: Web interface for grocery store
 
