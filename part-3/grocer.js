@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var cartButton = document.querySelector("#cart-button")
   var cartModal = document.querySelector('.cart-modal')
   var closeModalBtn = document.querySelector('.close-modal')
+  var clearBtn = document.querySelector('.clear-button')
   var shoppingList = document.querySelector('.shopping-list')
   var cartTotalNumber = document.querySelector('.cart-total-number')
-  var clearBtn = document.querySelector('.clear-button')
 
   var itemsInCart = []
   var cartCount
@@ -21,20 +21,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
           var itemPrice = button.parentNode.querySelector('.item-price').textContent
           itemsInCart.push(`${itemName} ${itemPrice}`)
           shoppingList.appendChild(document.createElement('p')).innerHTML=`${itemName} <span class="added-item-price">${itemPrice}</span>`
-
-          //seperate this out? updateCartCount()
-          cartCount = itemsInCart.length
-          cartCountDisplay.textContent = `(${cartCount})`
-
-          //seperate this out? updateCartTotal()
-          var priceWithoutDollarSign = Number(itemPrice.replace(/[^0-9\.]+/g,""))
-          cartTotal += priceWithoutDollarSign
-          var roundedTotal = Math.round(cartTotal * 100) / 100
-          cartTotalNumber.textContent = roundedTotal
+          updateCartCount()
+          updateCartTotal(itemPrice)
         })
       })
   })()
 
+  function updateCartCount(){
+    cartCount = itemsInCart.length
+    cartCountDisplay.textContent = `(${cartCount})`
+  }
+
+  function updateCartTotal(total) {
+    var priceWithoutDollarSign = Number(total.replace(/[^0-9\.]+/g,""))
+    cartTotal += priceWithoutDollarSign
+    var roundedTotal = Math.round(cartTotal * 100) / 100
+    cartTotalNumber.textContent = roundedTotal
+  }
 
   ;(function openModal(){
     cartButton.addEventListener('click', function(){
@@ -58,11 +61,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
       cartCount = 0
       cartTotal = 0
       itemsInCart = []
-      cartCountDisplay.textContent = `(${cartCount})`
+      updateCartCount()
       cartTotalNumber.textContent = cartTotal
       shoppingList.innerHTML = ''
     })
   })()
-
 
 })
