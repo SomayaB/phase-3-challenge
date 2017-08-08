@@ -46,16 +46,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeModalBtn.addEventListener('click', function(){
       cartModal.style.display = "none"
     })
+    cartModal.addEventListener("click", function(event){
+      if (event.target == cartModal) {
+        cartModal.style.display = "none"
+        }
+      })
   })()
 
   ;(function clearCart(){
     clearBtn.addEventListener('click', function(){
       cartCount = 0
-      cartTotal = 0.00
+      cartTotal = 0
       itemsInCart = []
       cartCountDisplay.textContent = `(${cartCount})`
       cartTotalNumber.textContent = cartTotal
-      shoppingList.parentNode.removeChild(shoppingList)
+      shoppingList.innerHTML = ''
     })
   })()
 
