@@ -1,5 +1,6 @@
 var db = require('./database.js')
-var format = require('./format.js')
+const { formatProductList, formatShopperOrders, formatRealShoppers } = require('./format.js')
+
 
 function run(command, input){
   if (command === 'product-list'){
@@ -8,10 +9,7 @@ function run(command, input){
     } else {
         db.productList(input)
         .then(function(result){
-          console.log(`|------------------+------------------+`)
-          console.log(`|   Product Name   |      Section     |`)
-          console.log(`|------------------+------------------+`)
-          format(result)
+          formatProductList(result)
           process.exit()
         })
         .catch(function(error){
@@ -25,10 +23,7 @@ function run(command, input){
       } else {
         db.shopperOrders(input)
         .then(function(result){
-          console.log(`|------------------+------------------+`)
-          console.log(`|     order id     |     total cost   |`)
-          console.log(`|------------------+------------------+`)
-          format(result)
+          formatShopperOrders(result)
           process.exit()
         })
         .catch(function(error){
@@ -39,10 +34,7 @@ function run(command, input){
   } else if (command === 'real-shoppers'){
       db.realShoppers()
       .then(function(result){
-        console.log(`|------------------+------------------+`)
-        console.log(`|   shopper name   | number of orders |`)
-        console.log(`|------------------+------------------+`)
-        format(result)
+        formatRealShoppers(result)
         process.exit()
       })
       .catch(function(error){
