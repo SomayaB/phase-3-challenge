@@ -141,6 +141,7 @@ body {
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin: 0;
 }
 
 .close-modal:hover, .close-modal:focus {
@@ -149,12 +150,13 @@ body {
   cursor: pointer;
 }
 
-.clearButton {
+.clear-button {
   margin-top: 20px;
 }
 
-.cartTotal {
-  margin-top: 40px;
+.cart-total {
+  margin-top: 20px;
+  float: right;
 }
 
 .added-item-price {
