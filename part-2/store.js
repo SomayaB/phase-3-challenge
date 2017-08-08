@@ -1,13 +1,10 @@
 var db = require('./database.js')
 var format = require('./format.js')
 
-var command = process.argv[2].toLowerCase()
-var input = process.argv.splice(3).join(' ')
-
 function run(command, input){
   if (command === 'product-list'){
     if(!input){
-      console.log('You must enter the section you want to look for.')
+      console.log('You must enter a valid grocery section.')
     } else {
         db.productList(input)
         .then(function(result){
@@ -19,11 +16,12 @@ function run(command, input){
         })
         .catch(function(error){
           console.log(error)
+          process.exit()
         })
       }
   } else if (command === 'shopper-orders'){
-    if(!input){
-      console.log('You must enter a shopper id.')
+    if(!input || typeof input !== 'number'){
+      console.log('You must enter a valid shopper id.')
     } else {
       db.shopperOrders(input)
       .then(function(result){
@@ -35,6 +33,7 @@ function run(command, input){
       })
       .catch(function(error){
         console.log(error)
+        process.exit()
       })
     }
   } else if (command === 'real-shoppers'){
@@ -48,6 +47,7 @@ function run(command, input){
       })
       .catch(function(error){
         console.log(error)
+        process.exit()
       })
   } else {
     console.log("Not a valid command. Please use 'product-list', 'shopper-orders', or 'real-shoppers'.")
@@ -55,16 +55,18 @@ function run(command, input){
   }
 }
 
-run(command, input)
-
-
-// function format(result){
-//   var currentLine = result.forEach(function(line){
-//     var firstWord = String(Object.values(line)[0])
-//     var secondWord = String(Object.values(line)[1])
-//     var noOfSpacesToaddToFirstWord = 16-firstWord.length
-//     var noOfSpacesToaddToSecondWord = 16-secondWord.length
-//     console.log(`|  ${firstWord} ${Array(noOfSpacesToaddToFirstWord).join(" ")}|  ${secondWord} ${Array(noOfSpacesToaddToSecondWord).join(" ")}|`)
-//   })
-//   console.log(`|------------------+------------------+`)
-// }
+try{
+  var command = process.argv[2].toLowerCase()
+  var input = process.argv.splice(3).join(' ')
+  run(command, input)
+} catch(error){
+  if(error instanceof TypeError){
+    console.log(`You must add a command after the file name. Please use of of these:
+  | command        | description                                               | example usage                            |
+  |----------------|-----------------------------------------------------------|------------------------------------------|
+  | product-list   | lists all products which belong to the given section      | ./store product-list <product-section>   |
+  | shopper-orders | lists the orders for a given shopper                      | ./store shopper-orders <shopper-id>      |
+  | real-shoppers  | lists the names of all shoppers who have at least 1 order | ./store real-shoppers                    |
+    `);
+  }
+}
