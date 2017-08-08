@@ -20,22 +20,22 @@ function run(command, input){
         })
       }
   } else if (command === 'shopper-orders'){
-    if(!input || typeof input !== 'number'){
-      console.log('You must enter a valid shopper id.')
-    } else {
-      db.shopperOrders(input)
-      .then(function(result){
-        console.log(`|------------------+------------------+`)
-        console.log(`|     order id     |     total cost   |`)
-        console.log(`|------------------+------------------+`)
-        format(result)
-        process.exit()
-      })
-      .catch(function(error){
-        console.log(error)
-        process.exit()
-      })
-    }
+      if(!input || isNaN(Number(input))){
+        console.log('You must enter a valid shopper id.')
+      } else {
+        db.shopperOrders(input)
+        .then(function(result){
+          console.log(`|------------------+------------------+`)
+          console.log(`|     order id     |     total cost   |`)
+          console.log(`|------------------+------------------+`)
+          format(result)
+          process.exit()
+        })
+        .catch(function(error){
+          console.log(error)
+          process.exit()
+        })
+      }
   } else if (command === 'real-shoppers'){
       db.realShoppers()
       .then(function(result){
@@ -67,6 +67,6 @@ try{
   | product-list   | lists all products which belong to the given section      | ./store product-list <product-section>   |
   | shopper-orders | lists the orders for a given shopper                      | ./store shopper-orders <shopper-id>      |
   | real-shoppers  | lists the names of all shoppers who have at least 1 order | ./store real-shoppers                    |
-    `);
+    `)
   }
 }
