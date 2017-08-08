@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var cartCountDisplay = document.querySelector("#cart-item-count");
   var addItemButtons = document.querySelectorAll(".add-item-btn")
   var cartButton = document.querySelector("#cart-button")
-  var cartModal = document.querySelector('.cartModal')
+  var cartModal = document.querySelector('.cart-modal')
+  var closeModalBtn = document.querySelector('.close-modal')
 
   ;(function cartCount(){
       var itemsInCart = []
@@ -22,12 +23,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   ;(function openModal(){
     cartButton.addEventListener('click', function(){
-      cartButton.addEventListener("click", function(){
         cartModal.style.display = "block"
       })
-    })
   })()
 
+  ;(function closeModal(){
+    closeModalBtn.addEventListener('click', function(){
+      cartModal.style.display = "none"
+    })
+  })()
 
 
 })
