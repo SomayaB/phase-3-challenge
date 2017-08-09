@@ -48,6 +48,11 @@ body {
   font-size: 20px;
 }
 
+.cart-total {
+  margin-top: 20px;
+  float: right;
+}
+
 /* SIDEBAR */
 .sidebar {
   flex: 0 0 20%;
@@ -154,11 +159,6 @@ body {
   margin-top: 20px;
   font-size: 20px;
 
-}
-
-.cart-total {
-  margin-top: 20px;
-  float: right;
 }
 
 .added-item-price {
