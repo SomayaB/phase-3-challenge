@@ -4,7 +4,7 @@ var app = express()
 
 var port = process.env.PORT || 3000
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 
 app.get('/api/days/:day', function(request, response, next){
@@ -32,19 +32,16 @@ app.get('/api/days/:day', function(request, response, next){
 
 app.post('/api/array/concat', function(request, response, next){
   response.set('Content-Type', 'application/json')
+  var result = []
   var bodyObj = request.body
-  var arrays = []
-  for(item in bodyObj){
-    try {
-      arrays.push(JSON.parse(bodyObj[item]))
-    } catch(error) {
-        if(error instanceof SyntaxError) {
-          response.status(400)
-          return response.json({"error": "Input data should be of type Array."})
-        }
-      }
+  for (item in bodyObj){
+    if(!Array.isArray(bodyObj[item])){
+      response.status(400)
+      return response.json({"error": "Input data should be of type Array."})
+    } else {
+    result = result.concat(bodyObj[item])
+    }
   }
-  var result = [].concat.apply([], arrays)
   response.json({"result": result})
 })
 
