@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var cartCount
   var cartTotal = 0
 
-
   ;(function addToCart(){
       addItemButtons.forEach(function(button){
         button.addEventListener('click', function(){
