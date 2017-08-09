@@ -2,7 +2,7 @@
   "name": "part-2",
   "version": "1.0.0",
   "description": "",
-  "main": "database.js",
+  "main": "database/database.js",
   "scripts": {
     "test": "node_modules/.bin/mocha database_test.js"
   },
