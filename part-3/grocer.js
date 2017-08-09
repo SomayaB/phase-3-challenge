@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   var itemsInCart = []
   var cartCount
-  var cartTotal = 0.00
+  var cartTotal = 0
 
 
   ;(function addToCart(){
@@ -33,10 +33,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function updateCartTotal(total) {
-    var priceWithoutDollarSign = Number(total.replace(/[^0-9\.]+/g,""))
-    cartTotal += priceWithoutDollarSign
-    var roundedTotal = Math.round(cartTotal * 100) / 100
-    cartTotalNumber.textContent = roundedTotal
+    if(typeof total === 'string'){
+      var priceWithoutDollarSign = Number(total.replace(/[^0-9\.]+/g,""))
+      cartTotal += priceWithoutDollarSign
+    }
+    cartTotal = Math.round(cartTotal * 100) / 100
+    cartTotalNumber.textContent = cartTotal
   }
 
   ;(function openModal(){
@@ -58,12 +60,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   ;(function clearCart(){
     clearBtn.addEventListener('click', function(){
-      cartCount = 0
       cartTotal = 0
       itemsInCart = []
-      updateCartCount()
-      cartTotalNumber.textContent = cartTotal
       shoppingList.innerHTML = ''
+      updateCartCount()
+      updateCartTotal(0)
     })
   })()
 
